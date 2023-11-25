@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+
+import { StudentCreateForm } from "./StudentCreateForm/StudentCreateForm";
+import { StudentList } from './StudentList/StudentList';
+import { StudentEditForm } from "./StudentEditForm/StudentEditForm";
+import { StudentDetail } from './StudentDetail/StudentDetail';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <StudentList />,
+  },
+  {
+    path: "/students/:id",
+    element: <StudentDetail />,
+  },
+  {
+    path: "/students/:id/edit",
+    element: <StudentEditForm />,
+  },
+  {
+    path: "/students/create",
+    element: <StudentCreateForm />,
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return  <RouterProvider router={router} />;
 }
 
 export default App;
